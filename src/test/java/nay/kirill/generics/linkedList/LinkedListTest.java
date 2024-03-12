@@ -1,6 +1,7 @@
 package nay.kirill.generics.linkedList;
 
 import org.junit.jupiter.api.Test;
+import java.util.LinkedList;
 
 public class LinkedListTest {
 
@@ -66,8 +67,8 @@ public class LinkedListTest {
         list.add(15);
         list.add(345655);
 
-        list.remove(12);
-        list.remove(9);
+        list.remove(new Integer(12));
+        list.remove(new Integer(9));
 
         assert list.get(0) == 5;
         assert list.get(1) == 15;
