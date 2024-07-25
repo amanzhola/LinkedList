@@ -46,6 +46,15 @@ public class QueueTest {
     }
 
     @Test
+    void testCount() {
+        queue.enqueue("One");
+        queue.enqueue("Two");
+        queue.enqueue("Three");
+
+        assertEquals(2, queue.count((value) -> value.contains("T")));
+    }
+
+    @Test
     void testDequeueEmptyQueue() {
         assertNull(queue.dequeue());
     }

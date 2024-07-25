@@ -39,6 +39,17 @@ public class Queue<T> {
         return front.data;
     }
 
+    public int count(Predicate<T> predicate) {
+        int count = 0;
+        for (Node<T> node = front; node != null; node = node.prev) {
+            if (predicate.compare(node.data)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public boolean isEmpty() {
         return front == null;
     }
