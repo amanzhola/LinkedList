@@ -26,19 +26,14 @@ public class Queue<T> {
         return data;
     }
 
-    public void enqueueAll(Queue<T> queue) {
-        for (Node<T> node = queue.front; node != null; node = node.prev) {
+    // Отрабатываем wildcard'ы
+    public void enqueueAll(Queue<? extends T> queue) {
+        for (Node<? extends T> node = queue.front; node != null; node = node.prev) {
             enqueue(node.data);
         }
     }
 
-    public T peek() {
-        if (isEmpty()) {
-            return null;
-        }
-        return front.data;
-    }
-
+    // Отрабатываем лямбды
     public int count(Predicate<T> predicate) {
         int count = 0;
         for (Node<T> node = front; node != null; node = node.prev) {
@@ -48,6 +43,13 @@ public class Queue<T> {
         }
 
         return count;
+    }
+
+    public T peek() {
+        if (isEmpty()) {
+            return null;
+        }
+        return front.data;
     }
 
     public boolean isEmpty() {
