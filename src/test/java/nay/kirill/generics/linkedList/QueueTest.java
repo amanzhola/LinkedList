@@ -1,21 +1,15 @@
 package nay.kirill.generics.linkedList;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class QueueTest {
 
-    private Queue<String> queue;
-
-    @BeforeEach
-    void setUp() {
-        queue = new Queue<>();
-    }
-
     @Test
     void testEnqueueAndDequeue() {
+        Queue<String> queue = new Queue<>();
+
         queue.enqueue("One");
         queue.enqueue("Two");
         queue.enqueue("Three");
@@ -28,6 +22,8 @@ public class QueueTest {
 
     @Test
     void testPeek() {
+        Queue<String> queue = new Queue<>();
+
         queue.enqueue("One");
         queue.enqueue("Two");
         queue.enqueue("Three");
@@ -38,6 +34,8 @@ public class QueueTest {
 
     @Test
     void testIsEmpty() {
+        Queue<String> queue = new Queue<>();
+
         assertTrue(queue.isEmpty());
 
         queue.enqueue("Element");
@@ -47,11 +45,32 @@ public class QueueTest {
 
     @Test
     void testCount() {
+        Queue<String> queue = new Queue<>();
+
         queue.enqueue("One");
         queue.enqueue("Two");
         queue.enqueue("Three");
 
         assertEquals(2, queue.count((value) -> value.contains("T")));
+    }
+
+    @Test
+    public void testEnqueueAll() {
+        Queue<String> queue1 = new Queue<>();
+
+        queue1.enqueue("One");
+        queue1.enqueue("Two");
+
+        Queue<String> queue2 = new Queue<>();
+
+        queue2.enqueue("Three");
+        queue2.enqueue("Four");
+
+        queue1.enqueueAll(queue2);
+        assertEquals("One", queue1.dequeue());
+        assertEquals("Two", queue1.dequeue());
+        assertEquals("Three", queue1.dequeue());
+        assertEquals("Four", queue1.dequeue());
     }
 
     @Test
@@ -79,6 +98,7 @@ public class QueueTest {
 
     @Test
     void testDequeueEmptyQueue() {
+        Queue<String> queue = new Queue<>();
         assertNull(queue.dequeue());
     }
 

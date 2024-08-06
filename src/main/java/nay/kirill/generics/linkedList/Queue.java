@@ -1,11 +1,11 @@
 package nay.kirill.generics.linkedList;
 
 public class Queue<T> {
-    private Node<T> front;
-    private Node<T> back;
+    private Node front;
+    private Node back;
 
     public void enqueue(T element) {
-        Node<T> newNode = new Node<>(element);
+        Node newNode = new Node(element);
         if (isEmpty()) {
             front = back = newNode;
         } else {
@@ -28,7 +28,7 @@ public class Queue<T> {
 
     // Отрабатываем wildcard'ы
     public void enqueueAll(Queue<? extends T> queue) {
-        for (Node<? extends T> node = queue.front; node != null; node = node.prev) {
+        for (Queue<? extends T>.Node node = queue.front; node != null; node = node.prev) {
             enqueue(node.data);
         }
     }
@@ -36,7 +36,7 @@ public class Queue<T> {
     // Отрабатываем лямбды
     public int count(Predicate<T> predicate) {
         int count = 0;
-        for (Node<T> node = front; node != null; node = node.prev) {
+        for (Node node = front; node != null; node = node.prev) {
             if (predicate.compare(node.data)) {
                 count++;
             }
@@ -56,9 +56,9 @@ public class Queue<T> {
         return front == null;
     }
 
-    private static class Node<T> {
+    private class Node {
         T data;
-        Node<T> prev;
+        Node prev;
 
         Node(T data) {
             this.data = data;
