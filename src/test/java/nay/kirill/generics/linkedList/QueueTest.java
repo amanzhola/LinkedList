@@ -7,10 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class QueueTest {
 
-    class TestParent {}
-
-    class ChildParent extends TestParent{}
-
     private Queue<String> queue;
 
     @BeforeEach
@@ -37,7 +33,7 @@ public class QueueTest {
         queue.enqueue("Three");
 
         assertEquals("One", queue.peek());
-        assertEquals("One", queue.peek()); // Peeking should not remove the element
+        assertEquals("One", queue.peek());
     }
 
     @Test
