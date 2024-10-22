@@ -7,6 +7,7 @@ public class Main {
         testPeek();
         testSize();
         testIsEmpty();
+        testCount();
     }
 
     private static void testEnqueue() {
@@ -52,6 +53,23 @@ public class Main {
 
         queue.enqueue("1");
         assertEquals(false, queue.isEmpty(), "testIsEmpty - 2");
+    }
+
+    private static void testCount() {
+        Queue<String> queue = new Queue<>();
+
+        queue.enqueue("Кирилл");
+        queue.enqueue("Аня");
+        queue.enqueue("Катя");
+        queue.enqueue("Петя");
+
+        int count = queue.count(Main::check);
+
+        assertEquals(2, count, "testCount");
+    }
+
+    private static boolean check(String value) {
+        return value.charAt(0) == 'К';
     }
 
     private static void assertEquals(Object expected, Object actual, String message) {
